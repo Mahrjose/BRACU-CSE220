@@ -45,8 +45,56 @@ So, whenever we're typing `arr`, we're not actually referencing the array itself
 
 ### Copying an array
 
-### Something to remember :
-* Although in python we can change the array / list size anytime, however, in other programming languages such as C++ or Java, the size is fixed from the get go. So, in this course for learning purposes we'll always fix the size of the arrays / list from the get go too. It'll help us understand thigs more easily. For example,
+There are 3 ways we can copy arrays in Python3:
+* Simply using the assignment operator
+* Shallow copy
+* Deep copy
+
+#### Using Assignment Operator
+We can use `=` to copy arrays.
+
+For example
+```py
+new_arr = old_arr
+```
+***Something to remember :***
+> In python, Assignment statements don't copy objects, they create bindings between a target and an object. When we use `=` operator user may think that this creates a new object which it doesn't. It only creates a new variable that shares the reference of the origianl object.
+
+**Simply put, `new_arr = old_arr` just copy the adress of the `old_arr` to `new_arr`. So, no new array has been created in the memory. These `old_arr` and `new_arr` now points to the same adress in the memory.**
+
+For example,
+```py
+arr1 = [2, 6, 9, 4]
+
+# Prints the address of the arr1 in the memory
+print(hex(id(arr1)))
+
+# assigning arr1 to arr2
+arr2 = arr1
+
+# Prints the address of the arr1 in the memory
+print(hex(id(arr2)))
+
+# making a change in arr1
+arr1[1] = 7
+
+# displaying the arrays
+>> print(arr1)
+>> print(arr2)
+0x7f5dcf5d0e80
+0x7f5dcf5d0e80
+[2, 7, 9, 4]
+[2, 7, 9, 4]
+```
+So you see, because the two array shares the same memory address, chaning the value in one array changes the other too.
+
+#### Shallow copy
+> A shallow copy means constructing a new collection object and then populating it with references to the child objects found in the original. The copying process does not recurse and therefore won’t create copies of the child objects themselves. In the case of shallow copy, a reference of the object is copied in another object. It means that any changes made to a copy of the object do reflect in the original object. We will be implementing shallow copy using the `view()` function.
+
+
+
+***Something to remember :***
+> Although in python we can change the array / list size anytime, however, in other programming languages such as C++ or Java, the size is fixed from the get go. So, in this course for learning purposes we'll always fix the size of the arrays / list from the get go too. It'll help us understand thigs more easily. For example,
 
 ```py
 >> arr = [0] * 10
