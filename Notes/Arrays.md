@@ -45,7 +45,7 @@ So, whenever we're typing `arr`, we're not actually referencing the array itself
 
 ### Copying an array
 
-There are 3 ways we can copy arrays in Python3:
+There are 3 ways we can copy arrays in Python:
 * Simply using the assignment operator
 * Shallow copy
 * Deep copy
@@ -88,9 +88,122 @@ arr1[1] = 7
 ```
 So you see, because the two array shares the same memory address, chaning the value in one array changes the other too.
 
-#### Shallow copy
-> A shallow copy means constructing a new collection object and then populating it with references to the child objects found in the original. The copying process does not recurse and therefore won’t create copies of the child objects themselves. In the case of shallow copy, a reference of the object is copied in another object. It means that any changes made to a copy of the object do reflect in the original object. We will be implementing shallow copy using the `view()` function.
+> Sometimes we want to have the original values unchanged and only modify the new values or vice varsa. In Python we can use the other two copy methods which are,
 
+* Shallow Copy 
+* Deep Copy
+
+**To make these copy work, we use the `copy` module.**
+
+#### Shallow Copy
+> A shallow copy creates a new object which stores the refernce of the original elements. So, a shallow copy doesn't just copies the reference of nested objects. This means a copy process doesn't recurse or create copies of nested object itself.
+
+**In other words, a shallow copy can copy a normal list / array and store that in a different memory space. However, if the list is a nested list, the shallow copy method will only copy the whole list in a another memory location, however, it will not copy nested list objects. Instead it'll create the reference of origianl memory for the nested items.**
+
+For better understanding this, let's see an example,
+```py
+import copy
+
+old_list = [1,2,3,4]
+new_list = copy.copy(old_list)
+
+new_list.append(5)
+
+print(f"Old list: {old_list}")
+print(f"Old list memory location: {hex(id(old_list))}")
+print(f"New list: {new_list}")
+print(f"New list memory location: {hex(id(new_list))}")
+```
+After running the program, we'll get,
+
+```txt
+Old list: [1, 2, 3, 4]
+Old list memory location: 0x7f42452b8e00
+New list: [1, 2, 3, 4, 5]
+New list memory location: 0x7f42452b8480
+```
+So, with this method we can `copy` a list in python. However, this only **really** works with normal lists. We'll get into problems if we use this method to copy nested lists. 
+
+For example,
+
+```py
+import copy
+
+old_list = [[1,2,3],[4,5,6]]
+new_list = copy.copy(old_list)
+
+new_list[0] = ['a','b','c']
+
+print(f"Old list: {old_list}")
+print(f"Old list memory location: {hex(id(old_list))}")
+print(f"New list: {new_list}")
+print(f"New list memory location: {hex(id(new_list))}")
+```
+Output:
+```txt
+Old list: [[1, 2, 3], [4, 5, 6]]
+Old list memory location: 0x7f7df913c800
+New list: [['a', 'b', 'c'], [4, 5, 6]]
+New list memory location: 0x7f7df913c580
+```
+This works fine. Now, let's see what happens if we change the nested list objects inside the original list.
+
+```py
+import copy
+
+old_list = [[1, 2, 3], [4, 5, 6]]
+new_list = copy.copy(old_list)
+
+new_list[0][0] = "a"
+
+print(f"Old list: {old_list}")
+print(f"Old list memory location: {hex(id(old_list))}")
+print(f"New list: {new_list}")
+print(f"New list memory location: {hex(id(new_list))}")
+```
+Output:
+
+```txt
+Old list: [['a', 2, 3], [4, 5, 6]]
+Old list memory location: 0x7ff49810f900
+New list: [['a', 2, 3], [4, 5, 6]]
+New list memory location: 0x7ff49810f680
+```
+`old_list` and `new_list` both changes. This happen because, the `shallow copy` method only copy the whole list in a new memory but it doesn't touch the nested list objects. Instead it creates a reference of the original memory location for them. That is why when we change only the whole list the changes happen in only the new list not both. However, when we touch the nested list objects, changes happen in both the new and the old lists. So, this is `Shallow Copy`.
+
+> In case anyone wandering about `list.copy()` method, Yes, that is a shallow copy method too.
+
+*If you're still confused read this [answer](https://stackoverflow.com/questions/17246693/what-is-the-difference-between-shallow-copy-deepcopy-and-normal-assignment-oper) from stackoverflow.*
+
+### Deep Copy
+
+> A deep copy creates a new object and recursively adds the copies of nested objects present in the original elements.
+
+A deepcopy solves the problem we had with the nested list with the shallow copy. Let's now apply deep copy method with the nested list example we just used earlier.
+
+```py
+import copy
+
+old_list = [[1, 2, 3], [4, 5, 6]]
+new_list = copy.deepcopy(old_list)
+
+new_list[0][0] = "a"
+
+print(f"Old list: {old_list}")
+print(f"Old list memory location: {hex(id(old_list))}")
+print(f"New list: {new_list}")
+print(f"New list memory location: {hex(id(new_list))}")
+```
+Output:
+
+```txt
+Old list: [[1, 2, 3], [4, 5, 6]]
+Old list memory location: 0x7fea699b4880
+New list: [['a', 2, 3], [4, 5, 6]]
+New list memory location: 0x7fea699b4600
+```
+
+So, using the `deepcopy()` we've solved the problem here.
 
 
 ***Something to remember :***
@@ -172,7 +285,3 @@ def insert(arr, index, value, size):
 ### Removing an element from an array
 ### Rotating an array Left
 ### Rotating an array Right
-
-## Circular Arrays:
-
-* In Linear arrays the first value always start from the 0<sup>th</sup> index.
