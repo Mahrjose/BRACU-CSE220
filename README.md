@@ -2,4 +2,4 @@
 
 > Notes and Assignment solutions for the Data Structures course offered by BRAC University.
 
-**Currently On Progress . . .**
+**Currently In Progress . . .**
