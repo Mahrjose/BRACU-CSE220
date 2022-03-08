@@ -8,7 +8,7 @@ When traversing a circular Array:
 #### Thumb Rule 2
 Whenever you increment the index of a circular array, always mod the incremented value with the circular array's length.
 
-> index % len(arr)
+> index + 1 % len(arr)
 
 #### Thumb Rule 3
 
@@ -95,3 +95,4 @@ circ=circularize(linear,8,5)
 
 print(circ)
 ```
+
