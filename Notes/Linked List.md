@@ -103,3 +103,26 @@ def indexOf(head, element):
     return -1 
 ```
 
+### Insert Elements in the list
+
+#### At the beginning
+
+```py
+
+```
+
+#### At middle
+
+```py
+
+```
+
+#### At the End
+
+```py
+
+```
+
+```py
+
+```
