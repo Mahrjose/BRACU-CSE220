@@ -24,14 +24,12 @@ patternPrint(num)
 
 
 # 4(b)
-
-
 def spacePattern(num):
     if num == 0:
         return
 
     spacePattern(num - 1)
-    print("*", end=" ")
+    print(" ", end=" ")
 
 
 def numPattern(num):
