@@ -30,7 +30,7 @@ def spacePattern(num):
     if num == 0:
         return
 
-    numPattern(num - 1)
+    spacePattern(num - 1)
     print("*", end=" ")
 
 
