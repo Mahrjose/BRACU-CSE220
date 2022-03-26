@@ -46,11 +46,10 @@ class LinkedList:
 
 
 MyList = LinkedList()
-MyList.append(1)
-MyList.append(2)
-MyList.append(3)
-MyList.append(4)
-MyList.append(5)
+MyList.append(10)
+MyList.append(20)
+MyList.append(30)
+MyList.append(40)
 
 
 def linkedListAdd(head):
@@ -62,3 +61,15 @@ def linkedListAdd(head):
 
 print("\nNo. 2(b)-->")
 print(linkedListAdd(MyList.head))
+
+# 2(c)
+def printReverse(head):
+    if head == None:
+        return
+
+    printReverse(head.next)
+    print(head.element)
+
+
+print("\nNo. 2(c)-->")
+printReverse(MyList.head)
