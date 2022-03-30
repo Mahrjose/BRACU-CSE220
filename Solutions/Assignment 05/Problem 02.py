@@ -9,7 +9,9 @@ def decimalToBinary(num):
 
 
 print("\nNo. 2(a)-->")
-print(decimalToBinary(10))
+n = int(input("Input Decimal to find the binary -> "))
+print(f"{n} in Binary is -> ", end="")
+print(decimalToBinary(n))
 
 
 # 2(b)
