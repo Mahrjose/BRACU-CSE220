@@ -51,5 +51,5 @@ def patternPrint(num, var):
 
 
 print("\nNo. 4(b)-->")
-num = int(input("Pattern Input: "))
+num = int(input("Reverse Pattern Input: "))
 patternPrint(num, num)
