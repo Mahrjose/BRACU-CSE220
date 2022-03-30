@@ -11,6 +11,6 @@ def hocBuilder(height):
     return 5 + hocBuilder(height - 1)
 
 
-print("\nNo. 2(c)-->")
-height = int(input("Enter Height: "))
+print("\nNo. 3-->")
+height = int(input("(HocBuilder) Enter Height: "))
 print(hocBuilder(height))
