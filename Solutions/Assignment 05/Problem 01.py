@@ -9,7 +9,9 @@ def factorial(n):
 
 
 print("\nNo. 1(a)-->")
-print(factorial(5))
+n = int(input("To find n!, Please input n -> "))
+print(f"{n}! is = ", end="")
+print(factorial(n))
 
 # 1(b)
 def fibonacci(num):
@@ -24,7 +26,9 @@ def fibonacci(num):
 
 
 print("\nNo. 1(b)-->")
-print(fibonacci(10))
+n = int(input("Input n to find nth fibonacci number -> "))
+print(f"{n}th fibonacci number is -> ", end="")
+print(fibonacci(n))
 
 # 1(c)
 def printArray(arr, index=0):
