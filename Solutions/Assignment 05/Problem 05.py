@@ -22,6 +22,7 @@ class FinalQ:
             return 0
 
 
+print("\nNo. 5-->")
 array = [25000, 100000, 250000, 350000]
 f = FinalQ()
 f.print(array, 0)
