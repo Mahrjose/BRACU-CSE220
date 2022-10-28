@@ -1,4 +1,4 @@
-# CSE220: Data Sturctures (Spring - 2022)
+# CSE220: Data Sturctures (Spring - 2022 & Fall 2022)
 
 > Solutions for the BRAC University Computer Science and Engineering Course - CSE220 Lab Assignments (Spring - 2022). 
 
